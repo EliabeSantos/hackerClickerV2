@@ -41,6 +41,7 @@ function addValue() {
 let Hero01Power = 0.1;
 let Hero01Quantity = 0;
 let Hero01Value = 100;
+let Hero01UpgradeValue = 1000;
 
 setInterval(
   function () {
@@ -52,6 +53,7 @@ setInterval(
       hero01.style.cursor = "pointer";
     } else {
       hero01.style.backgroundColor = "#707070";
+      hero01upgrade.style.backgroundColor = "#707070";
       hero01.style.cursor = "not-allowed";
     }
   },
@@ -68,9 +70,27 @@ function BuyHero01() {
 }
 
 function Upgradehero01() {
-  Hero01Power += Hero01Power;
-  acumulator += Hero01Power;
+  if (count >= Hero01UpgradeValue) {
+    count -= Hero01UpgradeValue;
+    Hero01Power += Hero01Power;
+    for (let i = 0; i < Hero01Quantity; i++) {
+      acumulator += Hero01Power / 2;
+    }
+  }
 }
+
+setInterval(
+  function () {
+    if (count >= Hero01UpgradeValue) {
+      hero01upgrade.style.backgroundColor = "green";
+      hero01upgrade.style.cursor = "pointer";
+    } else {
+      hero01upgrade.style.backgroundColor = "#707070";
+      hero01upgrade.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
 
 hero01.addEventListener("click", BuyHero01);
 hero01upgrade.addEventListener("click", Upgradehero01);
@@ -80,6 +100,7 @@ hero01upgrade.addEventListener("click", Upgradehero01);
 let Hero02Power = 1;
 let Hero02Quantity = 0;
 let Hero02Value = 1000;
+let Hero02UpgradeValue = 10000;
 
 setInterval(
   function () {
@@ -105,12 +126,26 @@ function BuyHero02() {
     acumulator += Hero02Power;
   }
 }
+
 function Upgradehero02() {
   Hero02Power += Hero02Power;
   for (let i = 0; i < Hero02Quantity; i++) {
     acumulator += Hero02Power / 2;
   }
 }
+setInterval(
+  function () {
+    if (count >= Hero02UpgradeValue) {
+      hero02upgrade.style.backgroundColor = "green";
+      hero02upgrade.style.cursor = "pointer";
+      console.log(acumulator);
+    } else {
+      hero02upgrade.style.backgroundColor = "#707070";
+      hero02upgrade.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
 
 hero02.addEventListener("click", BuyHero02);
 hero02upgrade.addEventListener("click", Upgradehero02);
@@ -125,7 +160,11 @@ Botao.addEventListener("click", addValue);
 setInterval(
   function () {
     contador.innerHTML = `Dinheiro: ${parseInt(count)}`;
-    contadorPs.innerHTML = `Por Segundo: ${parseInt(acumulator)}`;
+    contadorPs.innerHTML = `Por Segundo: ${
+      acumulator >= 100
+        ? acumulator
+        : parseFloat(acumulator).toString().slice(0, 4)
+    }`;
     contadorPC.innerHTML = `Por Click: ${click}`;
   },
   [1]
