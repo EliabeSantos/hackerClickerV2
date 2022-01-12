@@ -2,12 +2,18 @@ const Botao = document.getElementById("Botao");
 const contador = document.getElementById("contador");
 const contadorPs = document.getElementById("contador-ps");
 const contadorPC = document.getElementById("contador-pc");
+
+// heros
 const hero01 = document.getElementById("hero-01");
 const hero01Value = document.getElementById("hero-01-value");
 const hero01Quantity = document.getElementById("hero-01-quantity");
+//
+const hero02 = document.getElementById("hero-02");
+const hero02Value = document.getElementById("hero-02-value");
+const hero02Quantity = document.getElementById("hero-02-quantity");
 
 let count = 0;
-let acumulator = 2;
+let acumulator = 0;
 let click = 1;
 
 setInterval(
@@ -18,17 +24,21 @@ setInterval(
 );
 
 function addValue() {
+  Botao.classList.remove("animate"); // reset animation
+  void Botao.offsetWidth; // trigger reflow
+  Botao.classList.add("animate"); // start animation
   count += click;
   return;
 }
 
 // Heros Secction
 
-let Hero01Power = 1;
+// Nerd Otario Secction
+let Hero01Power = 0.1;
 let Hero01Quantity = 0;
 let Hero01Value = 100;
 
-function MakeUpGradeHero01() {
+function BuyHero01() {
   if (count >= Hero01Value) {
     Hero01Quantity++;
     count -= Hero01Value;
@@ -37,8 +47,28 @@ function MakeUpGradeHero01() {
   }
 }
 
+hero01.addEventListener("click", BuyHero01);
+//
+
+// Hacker Secction
+let Hero02Power = 1;
+let Hero02Quantity = 0;
+let Hero02Value = 1000;
+
+function BuyHero02() {
+  if (count >= Hero02Value) {
+    Hero02Quantity++;
+    count -= Hero02Value;
+    Hero02Value += Hero02Value / 5;
+    acumulator += Hero02Power;
+  }
+}
+hero02.addEventListener("click", BuyHero02);
+//
+
+// Heros Upgrades
+
 Botao.addEventListener("click", addValue);
-hero01.addEventListener("click", MakeUpGradeHero01);
 
 setInterval(
   function () {
@@ -47,6 +77,8 @@ setInterval(
     contadorPC.innerHTML = `Por Click: ${click}`;
     hero01Value.innerHTML = parseInt(Hero01Value);
     hero01Quantity.innerHTML = Hero01Quantity;
+    hero02Value.innerHTML = parseInt(Hero02Value);
+    hero02Quantity.innerHTML = Hero02Quantity;
   },
   [1]
 );
