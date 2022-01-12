@@ -160,4 +160,34 @@ body .container3 h1 {
   margin: 5px auto;
   border-radius: 10px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+.card-hero img {
+  width: 70px;
+  margin-left: 10px;
+}
+
+.card-hero h2 {
+  color: white;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.barr {
+  width: 3px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 0 0 10px;
+}
+
+.hero-status {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.hero-status div {
+  display: flex;
 }
