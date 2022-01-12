@@ -7,10 +7,14 @@ const contadorPC = document.getElementById("contador-pc");
 const hero01 = document.getElementById("hero-01");
 const hero01Value = document.getElementById("hero-01-value");
 const hero01Quantity = document.getElementById("hero-01-quantity");
+const hero01Power = document.getElementById("hero-01-power");
+const hero01upgrade = document.getElementById("hero-01-upgrade");
 //
 const hero02 = document.getElementById("hero-02");
 const hero02Value = document.getElementById("hero-02-value");
 const hero02Quantity = document.getElementById("hero-02-quantity");
+const hero02upgrade = document.getElementById("hero-02-upgrade");
+const hero02Power = document.getElementById("hero-02-power");
 
 let count = 1000;
 let acumulator = 0;
@@ -42,8 +46,10 @@ setInterval(
   function () {
     hero01Value.innerHTML = parseInt(Hero01Value);
     hero01Quantity.innerHTML = Hero01Quantity;
+    hero01Power.innerHTML = Hero01Power;
     if (Hero01Value <= count) {
       hero01.style.backgroundColor = "green";
+      hero01.style.cursor = "pointer";
     } else {
       hero01.style.backgroundColor = "#707070";
       hero01.style.cursor = "not-allowed";
@@ -61,7 +67,13 @@ function BuyHero01() {
   }
 }
 
+function Upgradehero01() {
+  Hero01Power += Hero01Power;
+  acumulator += Hero01Power;
+}
+
 hero01.addEventListener("click", BuyHero01);
+hero01upgrade.addEventListener("click", Upgradehero01);
 //
 
 // Hacker Secction
@@ -73,8 +85,10 @@ setInterval(
   function () {
     hero02Value.innerHTML = parseInt(Hero02Value);
     hero02Quantity.innerHTML = Hero02Quantity;
+    hero02Power.innerHTML = Hero02Power;
     if (Hero02Value <= count) {
       hero02.style.backgroundColor = "green";
+      hero02.style.cursor = "pointer";
     } else {
       hero02.style.backgroundColor = "#707070";
       hero02.style.cursor = "not-allowed";
@@ -91,17 +105,27 @@ function BuyHero02() {
     acumulator += Hero02Power;
   }
 }
+function Upgradehero02() {
+  Hero02Power += Hero02Power;
+  for (let i = 0; i < Hero02Quantity; i++) {
+    acumulator += Hero02Power / 2;
+  }
+}
+
 hero02.addEventListener("click", BuyHero02);
+hero02upgrade.addEventListener("click", Upgradehero02);
 //
 
 // Heros Upgrades
+
+//
 
 Botao.addEventListener("click", addValue);
 
 setInterval(
   function () {
     contador.innerHTML = `Dinheiro: ${parseInt(count)}`;
-    contadorPs.innerHTML = `Por Segundo: ${acumulator}`;
+    contadorPs.innerHTML = `Por Segundo: ${parseInt(acumulator)}`;
     contadorPC.innerHTML = `Por Click: ${click}`;
   },
   [1]
