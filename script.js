@@ -15,6 +15,12 @@ const hero02Value = document.getElementById("hero-02-value");
 const hero02Quantity = document.getElementById("hero-02-quantity");
 const hero02upgrade = document.getElementById("hero-02-upgrade");
 const hero02Power = document.getElementById("hero-02-power");
+//
+const hero03 = document.getElementById("hero-03");
+const hero03Value = document.getElementById("hero-03-value");
+const hero03Quantity = document.getElementById("hero-03-quantity");
+const hero03upgrade = document.getElementById("hero-03-upgrade");
+const hero03Power = document.getElementById("hero-03-power");
 
 let count = 0;
 let acumulator = 0;
@@ -151,6 +157,59 @@ hero02.addEventListener("click", BuyHero02);
 hero02upgrade.addEventListener("click", Upgradehero02);
 //
 
+// Anonimous Secction
+let Hero03Power = 10;
+let Hero03Quantity = 0;
+let Hero03Value = 10000;
+let Hero03UpgradeValue = 100000;
+
+setInterval(
+  function () {
+    hero03Value.innerHTML = Hero03Value;
+    hero03Quantity.innerHTML = Hero03Quantity;
+    hero03Power.innerHTML = Hero03Power;
+    if (Hero03Value <= count) {
+      hero03.style.backgroundColor = "green";
+      hero03.style.cursor = "pointer";
+    } else {
+      hero03.style.backgroundColor = "#707070";
+      hero03.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
+
+function BuyHero03() {
+  if (count >= Hero03Value) {
+    Hero03Quantity++;
+    count -= Hero03Value;
+    Hero03Value += Hero03Value / 5;
+    acumulator += Hero03Power;
+  }
+}
+
+function Upgradehero03() {
+  Hero03Power += Hero03Power;
+  for (let i = 0; i < Hero03Quantity; i++) {
+    acumulator += Hero03Power / 2;
+  }
+}
+setInterval(
+  function () {
+    if (count >= Hero03UpgradeValue) {
+      hero03upgrade.style.backgroundColor = "green";
+      hero03upgrade.style.cursor = "pointer";
+      console.log(acumulator);
+    } else {
+      hero03upgrade.style.backgroundColor = "#707070";
+      hero03upgrade.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
+
+hero03.addEventListener("click", BuyHero03);
+hero03upgrade.addEventListener("click", Upgradehero03);
 // Heros Upgrades
 
 //
@@ -159,7 +218,7 @@ Botao.addEventListener("click", addValue);
 
 setInterval(
   function () {
-    contador.innerHTML = `Dinheiro: ${parseInt(count)}`;
+    contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
       acumulator >= 100
         ? acumulator
