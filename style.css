@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  font-family: "Russo One", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body .header {
+  width: 100% !important;
+  height: 5rem !important;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  background-color: #232323;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin-left: 20px;
+  color: white;
+}
+
+.card-github {
+  width: 200px;
+  background-color: white;
+  height: 4rem;
+  margin-right: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .container1 {
+  background-color: black;
+  width: 30%;
+  height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container1 h2 {
+  color: white;
+}
+
+.button-title {
+  color: white;
+}
+
+.info {
+  width: 300px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+#Botao {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: white;
+  overflow: hidden;
+  background-image: url("./imgs/hacker.png");
+  margin-top: 5rem;
+}
+
+#Botao img {
+  width: 250px;
+  height: 250px;
+}
+
+.container1 {
+  color: white;
+}
