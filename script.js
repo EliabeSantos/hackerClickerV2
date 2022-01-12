@@ -12,7 +12,7 @@ const hero02 = document.getElementById("hero-02");
 const hero02Value = document.getElementById("hero-02-value");
 const hero02Quantity = document.getElementById("hero-02-quantity");
 
-let count = 0;
+let count = 1000;
 let acumulator = 0;
 let click = 1;
 
@@ -38,6 +38,20 @@ let Hero01Power = 0.1;
 let Hero01Quantity = 0;
 let Hero01Value = 100;
 
+setInterval(
+  function () {
+    hero01Value.innerHTML = parseInt(Hero01Value);
+    hero01Quantity.innerHTML = Hero01Quantity;
+    if (Hero01Value <= count) {
+      hero01.style.backgroundColor = "green";
+    } else {
+      hero01.style.backgroundColor = "#707070";
+      hero01.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
+
 function BuyHero01() {
   if (count >= Hero01Value) {
     Hero01Quantity++;
@@ -54,6 +68,20 @@ hero01.addEventListener("click", BuyHero01);
 let Hero02Power = 1;
 let Hero02Quantity = 0;
 let Hero02Value = 1000;
+
+setInterval(
+  function () {
+    hero02Value.innerHTML = parseInt(Hero02Value);
+    hero02Quantity.innerHTML = Hero02Quantity;
+    if (Hero02Value <= count) {
+      hero02.style.backgroundColor = "green";
+    } else {
+      hero02.style.backgroundColor = "#707070";
+      hero02.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
 
 function BuyHero02() {
   if (count >= Hero02Value) {
@@ -75,10 +103,6 @@ setInterval(
     contador.innerHTML = `Dinheiro: ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${acumulator}`;
     contadorPC.innerHTML = `Por Click: ${click}`;
-    hero01Value.innerHTML = parseInt(Hero01Value);
-    hero01Quantity.innerHTML = Hero01Quantity;
-    hero02Value.innerHTML = parseInt(Hero02Value);
-    hero02Quantity.innerHTML = Hero02Quantity;
   },
   [1]
 );

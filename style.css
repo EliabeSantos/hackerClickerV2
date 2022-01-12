@@ -155,7 +155,7 @@ body .container3 h1 {
 
 .card-hero {
   width: 92%;
-  background: black;
+  background: #707070;
   height: 100px;
   margin: 5px auto;
   border-radius: 10px;
@@ -163,6 +163,11 @@ body .container3 h1 {
 
   display: flex;
   align-items: center;
+  border: 2px solid #ccc;
+}
+.card-hero:hover {
+  transition: all 0.2s;
+  border-color: green;
 }
 .card-hero .hero-desc {
   min-width: 150px;
