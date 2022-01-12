@@ -16,7 +16,7 @@ const hero02Quantity = document.getElementById("hero-02-quantity");
 const hero02upgrade = document.getElementById("hero-02-upgrade");
 const hero02Power = document.getElementById("hero-02-power");
 
-let count = 1000;
+let count = 0;
 let acumulator = 0;
 let click = 1;
 
