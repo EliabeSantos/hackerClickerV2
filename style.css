@@ -88,6 +88,7 @@ body .container1 {
   overflow: hidden;
   background-image: url("./imgs/hacker.png");
   margin-top: 5rem;
+  cursor: pointer;
 }
 
 #Botao img {
@@ -150,4 +151,13 @@ body .container3 h1 {
 
 .hero-container > h1 {
   text-align: center;
+}
+
+.card-hero {
+  width: 92%;
+  background: black;
+  height: 100px;
+  margin: 5px auto;
+  border-radius: 10px;
+  cursor: pointer;
 }
