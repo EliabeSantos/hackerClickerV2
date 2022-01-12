@@ -38,7 +38,9 @@ body .header {
   margin-left: 20px;
   color: white;
 }
-
+.cards-header {
+  display: flex;
+}
 .card-github {
   width: 200px;
   background-color: white;
