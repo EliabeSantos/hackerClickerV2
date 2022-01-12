@@ -146,6 +146,8 @@ body .container3 h1 {
   text-align: center;
   background: black;
   margin-top: 10px;
+  flex-direction: column;
+  justify-content: center;
   margin-left: 10px;
 }
 

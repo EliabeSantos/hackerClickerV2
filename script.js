@@ -9,18 +9,22 @@ const hero01Value = document.getElementById("hero-01-value");
 const hero01Quantity = document.getElementById("hero-01-quantity");
 const hero01Power = document.getElementById("hero-01-power");
 const hero01upgrade = document.getElementById("hero-01-upgrade");
+const hero01UpgradeText = document.getElementById("hero-01-upgrade-text");
 //
 const hero02 = document.getElementById("hero-02");
 const hero02Value = document.getElementById("hero-02-value");
 const hero02Quantity = document.getElementById("hero-02-quantity");
 const hero02upgrade = document.getElementById("hero-02-upgrade");
 const hero02Power = document.getElementById("hero-02-power");
+const hero02UpgradeText = document.getElementById("hero-02-upgrade-text");
 //
 const hero03 = document.getElementById("hero-03");
 const hero03Value = document.getElementById("hero-03-value");
 const hero03Quantity = document.getElementById("hero-03-quantity");
 const hero03upgrade = document.getElementById("hero-03-upgrade");
 const hero03Power = document.getElementById("hero-03-power");
+const hero03UpgradeText = document.getElementById("hero-03-upgrade-text");
+//
 
 let count = 0;
 let acumulator = 0;
@@ -54,6 +58,7 @@ setInterval(
     hero01Value.innerHTML = parseInt(Hero01Value);
     hero01Quantity.innerHTML = Hero01Quantity;
     hero01Power.innerHTML = Hero01Power;
+    hero01UpgradeText.innerText = Hero01UpgradeValue;
     if (Hero01Value <= count) {
       hero01.style.backgroundColor = "green";
       hero01.style.cursor = "pointer";
@@ -113,6 +118,8 @@ setInterval(
     hero02Value.innerHTML = parseInt(Hero02Value);
     hero02Quantity.innerHTML = Hero02Quantity;
     hero02Power.innerHTML = Hero02Power;
+    hero02UpgradeText.innerText = Hero02UpgradeValue;
+
     if (Hero02Value <= count) {
       hero02.style.backgroundColor = "green";
       hero02.style.cursor = "pointer";
@@ -144,7 +151,6 @@ setInterval(
     if (count >= Hero02UpgradeValue) {
       hero02upgrade.style.backgroundColor = "green";
       hero02upgrade.style.cursor = "pointer";
-      console.log(acumulator);
     } else {
       hero02upgrade.style.backgroundColor = "#707070";
       hero02upgrade.style.cursor = "not-allowed";
@@ -168,6 +174,7 @@ setInterval(
     hero03Value.innerHTML = Hero03Value;
     hero03Quantity.innerHTML = Hero03Quantity;
     hero03Power.innerHTML = Hero03Power;
+    hero03UpgradeText.innerText = Hero03UpgradeValue;
     if (Hero03Value <= count) {
       hero03.style.backgroundColor = "green";
       hero03.style.cursor = "pointer";
@@ -231,27 +238,29 @@ setInterval(
 
 const popUp = document.createElement("div");
 
-function MyTeste(e) {
-  console.log(e.screenX);
-  popUp.style.position = "fixed";
-  popUp.style.transition = "1s";
-  popUp.style.display = "flex";
-  popUp.style.flexDirection = "column";
-  popUp.style.alignItems = "center";
-  popUp.style.justifyContent = "center";
-  popUp.style.marginLeft = `${e.screenX}px`;
-  popUp.style.marginTop = `${e.screenY / 2}px`;
-  popUp.style.width = "100px";
-  popUp.style.height = "100px";
-  popUp.style.backgroundColor = "#707070";
-  popUp.innerHTML = "Valor";
-  document.body.appendChild(popUp);
-  setTimeout(
-    function () {
-      document.body.removeChild(popUp);
-    },
-    [1000]
-  );
-}
+// Testar criar pop-up sem lib
 
-hero01upgrade.addEventListener("mouseenter", MyTeste)(console.log("test"));
+// function MyTeste(e) {
+//   console.log(e.screenX);
+//   popUp.style.position = "fixed";
+//   popUp.style.transition = "1s";
+//   popUp.style.display = "flex";
+//   popUp.style.flexDirection = "column";
+//   popUp.style.alignItems = "center";
+//   popUp.style.justifyContent = "center";
+//   popUp.style.marginLeft = `${e.screenX}px`;
+//   popUp.style.marginTop = `${e.screenY / 2}px`;
+//   popUp.style.width = "100px";
+//   popUp.style.height = "100px";
+//   popUp.style.backgroundColor = "#707070";
+//   popUp.innerHTML = "Valor";
+//   document.body.appendChild(popUp);
+//   setTimeout(
+//     function () {
+//       document.body.removeChild(popUp);
+//     },
+//     [1000]
+//   );
+// }
+
+// hero01upgrade.addEventListener("mouseenter", MyTeste)(console.log("test"));
