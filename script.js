@@ -228,3 +228,30 @@ setInterval(
   },
   [1]
 );
+
+const popUp = document.createElement("div");
+
+function MyTeste(e) {
+  console.log(e.screenX);
+  popUp.style.position = "fixed";
+  popUp.style.transition = "1s";
+  popUp.style.display = "flex";
+  popUp.style.flexDirection = "column";
+  popUp.style.alignItems = "center";
+  popUp.style.justifyContent = "center";
+  popUp.style.marginLeft = `${e.screenX}px`;
+  popUp.style.marginTop = `${e.screenY / 2}px`;
+  popUp.style.width = "100px";
+  popUp.style.height = "100px";
+  popUp.style.backgroundColor = "#707070";
+  popUp.innerHTML = "Valor";
+  document.body.appendChild(popUp);
+  setTimeout(
+    function () {
+      document.body.removeChild(popUp);
+    },
+    [1000]
+  );
+}
+
+hero01upgrade.addEventListener("mouseenter", MyTeste)(console.log("test"));

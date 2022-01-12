@@ -53,6 +53,7 @@ body .header {
 }
 
 body .container1 {
+  position: relative;
   background-color: black;
   width: calc(33.333%);
   height: calc(100vh - 5rem);
