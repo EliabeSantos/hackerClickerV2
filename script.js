@@ -2,6 +2,9 @@ const Botao = document.getElementById("Botao");
 const contador = document.getElementById("contador");
 const contadorPs = document.getElementById("contador-ps");
 const contadorPC = document.getElementById("contador-pc");
+const herosCounter = document.getElementById("player-heros-container");
+const Modal = document.getElementById("modal");
+const closeModal = document.getElementById("close-modal");
 
 // heros
 const hero01 = document.getElementById("hero-01");
@@ -24,6 +27,13 @@ const hero03Quantity = document.getElementById("hero-03-quantity");
 const hero03upgrade = document.getElementById("hero-03-upgrade");
 const hero03Power = document.getElementById("hero-03-power");
 const hero03UpgradeText = document.getElementById("hero-03-upgrade-text");
+//
+const hero04 = document.getElementById("hero-04");
+const hero04Value = document.getElementById("hero-04-value");
+const hero04Quantity = document.getElementById("hero-04-quantity");
+const hero04upgrade = document.getElementById("hero-04-upgrade");
+const hero04Power = document.getElementById("hero-04-power");
+const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 //
 
 let count = 0;
@@ -52,6 +62,11 @@ let Hero01Power = 0.1;
 let Hero01Quantity = 0;
 let Hero01Value = 100;
 let Hero01UpgradeValue = 1000;
+const Hero01Card = document.createElement("div");
+Hero01Card.classList.add("teste");
+const Hero01Img = document.createElement("img");
+Hero01Img.style.width = "50px";
+Hero01Img.src = "imgs/hackerIdiota.png";
 
 setInterval(
   function () {
@@ -72,7 +87,12 @@ setInterval(
 );
 
 function BuyHero01() {
+  if (Hero01Quantity === 0) {
+    Hero01Card.appendChild(Hero01Img);
+    herosCounter.appendChild(Hero01Card);
+  }
   if (count >= Hero01Value) {
+    Hero01Card.appendChild(Hero01Img);
     Hero01Quantity++;
     count -= Hero01Value;
     Hero01Value += Hero01Value / 5;
@@ -84,6 +104,7 @@ function Upgradehero01() {
   if (count >= Hero01UpgradeValue) {
     count -= Hero01UpgradeValue;
     Hero01Power += Hero01Power;
+    Hero01UpgradeValue += Hero01UpgradeValue * 2;
     for (let i = 0; i < Hero01Quantity; i++) {
       acumulator += Hero01Power / 2;
     }
@@ -141,9 +162,13 @@ function BuyHero02() {
 }
 
 function Upgradehero02() {
-  Hero02Power += Hero02Power;
-  for (let i = 0; i < Hero02Quantity; i++) {
-    acumulator += Hero02Power / 2;
+  if (count >= Hero01UpgradeValue) {
+    Hero02Power += Hero02Power;
+    count -= Hero02Value;
+    Hero02UpgradeValue += Hero02UpgradeValue * 2;
+    for (let i = 0; i < Hero02Quantity; i++) {
+      acumulator += Hero02Power / 2;
+    }
   }
 }
 setInterval(
@@ -196,9 +221,13 @@ function BuyHero03() {
 }
 
 function Upgradehero03() {
-  Hero03Power += Hero03Power;
-  for (let i = 0; i < Hero03Quantity; i++) {
-    acumulator += Hero03Power / 2;
+  if (count >= Hero03UpgradeValue) {
+    Hero03Power += Hero03Power;
+    count -= Hero03Value;
+    Hero03UpgradeValue += Hero03UpgradeValue * 2;
+    for (let i = 0; i < Hero03Quantity; i++) {
+      acumulator += Hero03Power / 2;
+    }
   }
 }
 setInterval(
@@ -206,7 +235,6 @@ setInterval(
     if (count >= Hero03UpgradeValue) {
       hero03upgrade.style.backgroundColor = "green";
       hero03upgrade.style.cursor = "pointer";
-      console.log(acumulator);
     } else {
       hero03upgrade.style.backgroundColor = "#707070";
       hero03upgrade.style.cursor = "not-allowed";
@@ -217,10 +245,75 @@ setInterval(
 
 hero03.addEventListener("click", BuyHero03);
 hero03upgrade.addEventListener("click", Upgradehero03);
+
+//
+// Steve secction
+//
+let Hero04Power = 100;
+let Hero04Quantity = 0;
+let Hero04Value = 100000;
+let Hero04UpgradeValue = 1000000;
+
+setInterval(
+  function () {
+    hero04Value.innerHTML = Hero04Value;
+    hero04Quantity.innerHTML = Hero04Quantity;
+    hero04Power.innerHTML = Hero04Power;
+    hero04UpgradeText.innerText = Hero04UpgradeValue;
+    if (Hero04Value <= count) {
+      hero04.style.backgroundColor = "green";
+      hero04.style.cursor = "pointer";
+    } else {
+      hero04.style.backgroundColor = "#707070";
+      hero04.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
+
+function BuyHero04() {
+  if (count >= Hero04Value) {
+    Hero04Quantity++;
+    count -= Hero04Value;
+    Hero04Value += Hero04Value / 5;
+    acumulator += Hero04Power;
+  }
+}
+
+function Upgradehero04() {
+  if (count >= Hero04UpgradeValue) {
+    Hero04Power += Hero04Power;
+    count -= Hero03Value;
+    Hero03UpgradeValue += Hero03UpgradeValue * 2;
+    for (let i = 0; i < Hero04Quantity; i++) {
+      acumulator += Hero04Power / 2;
+    }
+  }
+}
+setInterval(
+  function () {
+    if (count >= Hero04UpgradeValue) {
+      hero04upgrade.style.backgroundColor = "green";
+      hero04upgrade.style.cursor = "pointer";
+    } else {
+      hero04upgrade.style.backgroundColor = "#707070";
+      hero04upgrade.style.cursor = "not-allowed";
+    }
+  },
+  [100]
+);
+
+hero04.addEventListener("click", BuyHero04);
+hero04upgrade.addEventListener("click", Upgradehero04);
 // Heros Upgrades
 
 //
 
+function CloseModal() {
+  Modal.classList.add("modal-invisible");
+}
+
+closeModal.addEventListener("click", CloseModal);
 Botao.addEventListener("click", addValue);
 
 setInterval(
@@ -228,7 +321,12 @@ setInterval(
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
       acumulator >= 100
-        ? acumulator
+        ? acumulator.toString().split(".")[1]
+          ? ` ${acumulator.toString().split(".")[0]},${acumulator
+              .toString()
+              .split(".")[1]
+              .slice(0, 3)}`
+          : acumulator
         : parseFloat(acumulator).toString().slice(0, 4)
     }`;
     contadorPC.innerHTML = `Por Click: ${click}`;

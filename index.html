@@ -12,6 +12,11 @@
   </head>
   <body>
     <div id="pop-up"></div>
+    <!-- <div class="modal" id="modal">
+      <div>
+        <button id="close-modal">Fechar</button>
+      </div>
+    </div> -->
     <div class="header">
       <h1 id="Title">Hacker Clicker V2</h1>
       <div class="cards-header">
@@ -39,7 +44,17 @@
     <div class="column"></div>
 
     <div class="container2">
-      <h1>Teste</h1>
+      <div class="player-config-container">
+        <div id="tutorial">
+          <p>Tutorial</p>
+        </div>
+        <div id="info"><p>Info</p></div>
+        <div id=""></div>
+        <div id=""></div>
+      </div>
+      <div id="player-heros-container" class="player-heros-container">
+        <div></div>
+      </div>
     </div>
     <div class="column"></div>
     <div class="container3">
@@ -56,6 +71,10 @@
         <div class="loja-item" id="hero-03-upgrade">
           <p>Upgrade Anonimous</p>
           <p id="hero-03-upgrade-text"></p>
+        </div>
+        <div class="loja-item" id="hero-04-upgrade">
+          <p>Upgrade Steve</p>
+          <p id="hero-04-upgrade-text"></p>
         </div>
       </div>
       <h1>Herois</h1>
@@ -121,6 +140,32 @@
             <div>
               <p>Por Segundo:</p>
               <h2 id="hero-03-power"></h2>
+            </div>
+          </div>
+        </div>
+        <div id="hero-04" class="card-hero">
+          <div class="hero-desc">
+            <h2>Steve</h2>
+            <img
+              height="60px"
+              width="30px"
+              alt=""
+              src="./imgs/steve-jobs.png"
+            />
+          </div>
+          <div class="barr"></div>
+          <div class="hero-status">
+            <div>
+              <p>Valor R$</p>
+              <h2 id="hero-04-value"></h2>
+            </div>
+            <div>
+              <p>Possui:</p>
+              <h2 id="hero-04-quantity"></h2>
+            </div>
+            <div>
+              <p>Por Segundo:</p>
+              <h2 id="hero-04-power"></h2>
             </div>
           </div>
         </div>
