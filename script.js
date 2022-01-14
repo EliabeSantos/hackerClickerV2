@@ -5,6 +5,9 @@ const contadorPC = document.getElementById("contador-pc");
 const herosCounter = document.getElementById("player-heros-container");
 const Modal = document.getElementById("modal");
 const closeModal = document.getElementById("close-modal");
+const tutorialModal = document.getElementById("tutorial");
+const modalTitle = document.getElementById("modal-title");
+const modalDescription = document.getElementById("modal-description");
 
 // heros
 const hero01 = document.getElementById("hero-01");
@@ -63,16 +66,12 @@ let Hero01Quantity = 0;
 let Hero01Value = 100;
 let Hero01UpgradeValue = 1000;
 const Hero01Card = document.createElement("div");
-Hero01Card.classList.add("teste");
-const Hero01Img = document.createElement("img");
-Hero01Img.style.width = "50px";
-Hero01Img.src = "imgs/hackerIdiota.png";
 
 setInterval(
   function () {
     hero01Value.innerHTML = parseInt(Hero01Value);
     hero01Quantity.innerHTML = Hero01Quantity;
-    hero01Power.innerHTML = Hero01Power;
+    hero01Power.innerHTML = Hero01Power * Hero01Quantity;
     hero01UpgradeText.innerText = Hero01UpgradeValue;
     if (Hero01Value <= count) {
       hero01.style.backgroundColor = "green";
@@ -88,11 +87,13 @@ setInterval(
 
 function BuyHero01() {
   if (Hero01Quantity === 0) {
-    Hero01Card.appendChild(Hero01Img);
     herosCounter.appendChild(Hero01Card);
+    let Hero01Img = document.createElement("img");
+    Hero01Img.style.width = "60px";
+    Hero01Img.src = "imgs/hackerIdiota.png";
+    Hero01Card.appendChild(Hero01Img);
   }
   if (count >= Hero01Value) {
-    Hero01Card.appendChild(Hero01Img);
     Hero01Quantity++;
     count -= Hero01Value;
     Hero01Value += Hero01Value / 5;
@@ -105,6 +106,7 @@ function Upgradehero01() {
     count -= Hero01UpgradeValue;
     Hero01Power += Hero01Power;
     Hero01UpgradeValue += Hero01UpgradeValue * 2;
+
     for (let i = 0; i < Hero01Quantity; i++) {
       acumulator += Hero01Power / 2;
     }
@@ -133,12 +135,13 @@ let Hero02Power = 1;
 let Hero02Quantity = 0;
 let Hero02Value = 1000;
 let Hero02UpgradeValue = 10000;
+const Hero02Card = document.createElement("div");
 
 setInterval(
   function () {
     hero02Value.innerHTML = parseInt(Hero02Value);
     hero02Quantity.innerHTML = Hero02Quantity;
-    hero02Power.innerHTML = Hero02Power;
+    hero02Power.innerHTML = Hero02Power * Hero02Quantity;
     hero02UpgradeText.innerText = Hero02UpgradeValue;
 
     if (Hero02Value <= count) {
@@ -153,6 +156,13 @@ setInterval(
 );
 
 function BuyHero02() {
+  if (Hero02Quantity === 0) {
+    herosCounter.appendChild(Hero02Card);
+    let Hero02Img = document.createElement("img");
+    Hero02Img.style.width = "70px";
+    Hero02Img.src = "imgs/hacker-deepweb.png";
+    Hero02Card.appendChild(Hero02Img);
+  }
   if (count >= Hero02Value) {
     Hero02Quantity++;
     count -= Hero02Value;
@@ -162,9 +172,9 @@ function BuyHero02() {
 }
 
 function Upgradehero02() {
-  if (count >= Hero01UpgradeValue) {
+  if (count >= Hero02UpgradeValue) {
     Hero02Power += Hero02Power;
-    count -= Hero02Value;
+    count -= Hero02UpgradeValue;
     Hero02UpgradeValue += Hero02UpgradeValue * 2;
     for (let i = 0; i < Hero02Quantity; i++) {
       acumulator += Hero02Power / 2;
@@ -193,12 +203,13 @@ let Hero03Power = 10;
 let Hero03Quantity = 0;
 let Hero03Value = 10000;
 let Hero03UpgradeValue = 100000;
+const Hero03Card = document.createElement("div");
 
 setInterval(
   function () {
     hero03Value.innerHTML = Hero03Value;
     hero03Quantity.innerHTML = Hero03Quantity;
-    hero03Power.innerHTML = Hero03Power;
+    hero03Power.innerHTML = Hero03Power * Hero03Quantity;
     hero03UpgradeText.innerText = Hero03UpgradeValue;
     if (Hero03Value <= count) {
       hero03.style.backgroundColor = "green";
@@ -212,6 +223,13 @@ setInterval(
 );
 
 function BuyHero03() {
+  if (Hero03Quantity === 0) {
+    herosCounter.appendChild(Hero03Card);
+    let Hero03Img = document.createElement("img");
+    Hero03Img.style.width = "50px";
+    Hero03Img.src = "imgs/anonymous.png";
+    Hero03Card.appendChild(Hero03Img);
+  }
   if (count >= Hero03Value) {
     Hero03Quantity++;
     count -= Hero03Value;
@@ -253,12 +271,13 @@ let Hero04Power = 100;
 let Hero04Quantity = 0;
 let Hero04Value = 100000;
 let Hero04UpgradeValue = 1000000;
+const Hero04Card = document.createElement("div");
 
 setInterval(
   function () {
     hero04Value.innerHTML = Hero04Value;
     hero04Quantity.innerHTML = Hero04Quantity;
-    hero04Power.innerHTML = Hero04Power;
+    hero04Power.innerHTML = Hero04Power * Hero04Quantity;
     hero04UpgradeText.innerText = Hero04UpgradeValue;
     if (Hero04Value <= count) {
       hero04.style.backgroundColor = "green";
@@ -272,6 +291,13 @@ setInterval(
 );
 
 function BuyHero04() {
+  if (Hero04Quantity === 0) {
+    herosCounter.appendChild(Hero04Card);
+    let Hero04Img = document.createElement("img");
+    Hero04Img.style.width = "60px";
+    Hero04Img.src = "imgs/steve-jobs.png";
+    Hero04Card.appendChild(Hero04Img);
+  }
   if (count >= Hero04Value) {
     Hero04Quantity++;
     count -= Hero04Value;
@@ -312,10 +338,21 @@ hero04upgrade.addEventListener("click", Upgradehero04);
 function CloseModal() {
   Modal.classList.add("modal-invisible");
 }
+function OpenModal(x) {
+  console.log(x.target.id);
+  if (x.target.id === "tutorial") {
+    modalTitle.innerHTML = "Tutorial";
+    modalDescription.innerHTML =
+      "Bem vindo ao hackerClicker V2. esse game foi feito para relembrar oque aprendi em js e ver mais claramente minha evolucao na programacao. Para jogar, basta clikcar :). jogos de click funcionam da seguinte forma.";
+  } else {
+    modalTitle.innerHTML = "Sei las";
+  }
+  Modal.classList.remove("modal-invisible");
+}
 
 closeModal.addEventListener("click", CloseModal);
 Botao.addEventListener("click", addValue);
-
+tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;

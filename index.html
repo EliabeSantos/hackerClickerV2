@@ -12,11 +12,25 @@
   </head>
   <body>
     <div id="pop-up"></div>
-    <!-- <div class="modal" id="modal">
-      <div>
-        <button id="close-modal">Fechar</button>
+    <div class="modal modal-invisible" id="modal">
+      <div class="modal-container">
+        <div id="close-modal-container">
+          <button id="close-modal">X</button>
+        </div>
+        <div id="modal-info-container">
+          <h1 id="modal-title"></h1>
+          <p id="modal-description"></p>
+          <p id="tutorial-description">
+            Click: A forma principal de se evoluir em um game de click, é
+            clickando! você pode clikcar no lado esquerdo onde Fica a imagem do
+            seu personagem! <br />Heróis: Eles irão te render uma grana passĩva,
+            ou seja voçê não precisa mais clickar para evoluir! <br />Power-Ups:
+            Os Power-ups irão aumentar a produção por segundo dos seus Heróis,
+            oque vai facilitar sua vida!
+          </p>
+        </div>
       </div>
-    </div> -->
+    </div>
     <div class="header">
       <h1 id="Title">Hacker Clicker V2</h1>
       <div class="cards-header">
@@ -45,16 +59,12 @@
 
     <div class="container2">
       <div class="player-config-container">
-        <div id="tutorial">
-          <p>Tutorial</p>
-        </div>
+        <div id="tutorial">Tutorial</div>
         <div id="info"><p>Info</p></div>
         <div id=""></div>
         <div id=""></div>
       </div>
-      <div id="player-heros-container" class="player-heros-container">
-        <div></div>
-      </div>
+      <div id="player-heros-container" class="player-heros-container"></div>
     </div>
     <div class="column"></div>
     <div class="container3">

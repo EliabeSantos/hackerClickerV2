@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Russo One", sans-serif;
 }
 
 h1,
@@ -149,12 +150,20 @@ body .container2 {
 
 .player-heros-container div {
   width: 95%;
-  height: 6rem;
+  height: 7rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: white;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin: 0.3rem 0;
+}
+
+.player-heros-container img {
+  margin-left: 10px;
 }
 /* Container 3 */
 
@@ -283,11 +292,33 @@ body .container3 h1 {
   z-index: 100;
   justify-content: center;
 }
-.modal div {
+.modal-container {
   width: 50rem;
   height: 30rem;
-  background-color: white;
+  background-color: #232323;
   border-radius: 10px;
+  text-align: center;
+  color: #fff;
+}
+#modal-description {
+  width: 90%;
+  margin: 1rem auto;
+}
+#tutorial-description {
+  width: 90%;
+  margin: 1rem auto;
+  text-align: justify;
+}
+#close-modal-container {
+  display: flex;
+  justify-content: flex-end;
+}
+#close-modal {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin: 10px 10px 0 auto;
+  margin-left: auto;
 }
 .modal-visible {
   display: flex;
