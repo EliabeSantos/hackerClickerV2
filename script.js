@@ -40,6 +40,7 @@ const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 //
 
 //
+
 let user = {
   name: "user",
   balance: 0,
@@ -47,7 +48,15 @@ let user = {
   Hero02Quantity: 0,
   Hero03Quantity: 0,
 };
-if (parseInt(localStorage.getItem("balance")) !== 0) {
+if (!localStorage.getItem("user")) {
+  // user = {
+  //   name: localStorage.setItem("user", user.name),
+  //   balance: localStorage.setItem("balance", user.balance),
+  //   Hero01Quantity: localStorage.setItem("Hero01Quantity", user.Hero01Quantity),
+  //   Hero02Quantity: localStorage.setItem("Hero02Quantity", user.Hero02Quantity),
+  //   Hero03Quantity: localStorage.setItem("Hero03Quantity", user.Hero03Quantity),
+  // };
+} else {
   user = {
     name: localStorage.getItem("user"),
     balance: localStorage.getItem("balance"),
@@ -55,19 +64,6 @@ if (parseInt(localStorage.getItem("balance")) !== 0) {
     Hero02Quantity: localStorage.getItem("Hero02Quantity"),
     Hero03Quantity: localStorage.getItem("Hero03Quantity"),
   };
-  //   popUp
-  localStorage.setItem("balance", user.balance);
-  localStorage.setItem("Hero01Quantity", user.Hero01Quantity);
-  localStorage.setItem("Hero02Quantity", user.Hero01Quantity);
-  localStorage.setItem("Hero03Quantity", user.Hero01Quantity);
-} else {
-  console.log(parseInt(localStorage.getItem("balance")));
-  localStorage.setItem("user", user.name);
-  localStorage.setItem("balance", user.balance);
-  localStorage.setItem("Hero01Quantity", user.Hero01Quantity);
-  localStorage.setItem("Hero02Quantity", user.Hero01Quantity);
-  localStorage.setItem("Hero03Quantity", user.Hero01Quantity);
-  console.log("Nao tem user");
 }
 //
 
@@ -395,6 +391,7 @@ Botao.addEventListener("click", addValue);
 tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
+    user.balance = count;
     localStorage.setItem("balance", count);
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
