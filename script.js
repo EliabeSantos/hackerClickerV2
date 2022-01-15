@@ -1,3 +1,21 @@
+let user = {
+  name: "user",
+  balance: 0,
+  Hero01Quantity: 0,
+  Hero02Quantity: 0,
+  Hero03Quantity: 0,
+};
+if (!localStorage.getItem("user")) {
+  user = {
+    name: localStorage.setItem("user", user.name),
+    balance: localStorage.setItem("balance", 20),
+    Hero01Quantity: localStorage.setItem("Hero01Quantity", 20),
+    Hero02Quantity: localStorage.setItem("Hero02Quantity", 20),
+    Hero03Quantity: localStorage.setItem("Hero03Quantity", 23),
+  };
+} else {
+}
+console.log(localStorage.getItem("user") === "user");
 const Botao = document.getElementById("Botao");
 const contador = document.getElementById("contador");
 const contadorPs = document.getElementById("contador-ps");
@@ -41,35 +59,17 @@ const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 
 //
 
-let user = {
-  name: "user",
-  balance: 0,
-  Hero01Quantity: 0,
-  Hero02Quantity: 0,
-  Hero03Quantity: 0,
-};
-if (!localStorage.getItem("user")) {
-  // user = {
-  //   name: localStorage.setItem("user", user.name),
-  //   balance: localStorage.setItem("balance", user.balance),
-  //   Hero01Quantity: localStorage.setItem("Hero01Quantity", user.Hero01Quantity),
-  //   Hero02Quantity: localStorage.setItem("Hero02Quantity", user.Hero02Quantity),
-  //   Hero03Quantity: localStorage.setItem("Hero03Quantity", user.Hero03Quantity),
-  // };
-} else {
-  user = {
-    name: localStorage.getItem("user"),
-    balance: localStorage.getItem("balance"),
-    Hero01Quantity: localStorage.getItem("Hero01Quantity"),
-    Hero02Quantity: localStorage.getItem("Hero02Quantity"),
-    Hero03Quantity: localStorage.getItem("Hero03Quantity"),
-  };
-}
 //
 
-let count = 0;
-let acumulator = 0;
-let click = 1;
+if (localStorage.getItem("balance") !== 0) {
+  count = parseInt(localStorage.getItem("balance"));
+  acumulator = 0;
+  click = 1;
+} else {
+  count = 0;
+  acumulator = 0;
+  click = 0;
+}
 
 setInterval(
   function () {
@@ -89,10 +89,17 @@ function addValue() {
 // Heros Secction
 
 // Nerd Secction
-let Hero01Power = 0.1;
-let Hero01Quantity = 0;
-let Hero01Value = 100;
-let Hero01UpgradeValue = 1000;
+if (localStorage.getItem("balance") !== 0) {
+  Hero01Power = 0.1;
+  Hero01Quantity = localStorage.getItem("Hero01Quantity");
+  Hero01Value = 100;
+  Hero01UpgradeValue = 1000;
+} else {
+  Hero01Power = 0.1;
+  Hero01Quantity = 0;
+  Hero01Value = 100;
+  Hero01UpgradeValue = 1000;
+}
 if (user.balance !== 0) {
   Hero01Power = 0.1;
   Hero01Quantity = user.Hero01Quantity;
@@ -108,7 +115,6 @@ setInterval(
     hero01Quantity.innerHTML = Hero01Quantity;
     hero01Power.innerHTML = Hero01Power * Hero01Quantity;
     hero01UpgradeText.innerText = Hero01UpgradeValue;
-    localStorage.setItem("Hero01Quantity", Hero01Quantity);
     if (Hero01Value <= count) {
       hero01.style.backgroundColor = "green";
       hero01.style.cursor = "pointer";
@@ -391,8 +397,9 @@ Botao.addEventListener("click", addValue);
 tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
-    user.balance = count;
     localStorage.setItem("balance", count);
+    user.balance = localStorage.getItem("balance");
+
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
       acumulator >= 100
