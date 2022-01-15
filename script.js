@@ -39,6 +39,38 @@ const hero04Power = document.getElementById("hero-04-power");
 const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 //
 
+//
+let user = {
+  name: "user",
+  balance: 0,
+  Hero01Quantity: 0,
+  Hero02Quantity: 0,
+  Hero03Quantity: 0,
+};
+if (parseInt(localStorage.getItem("balance")) !== 0) {
+  user = {
+    name: localStorage.getItem("user"),
+    balance: localStorage.getItem("balance"),
+    Hero01Quantity: localStorage.getItem("Hero01Quantity"),
+    Hero02Quantity: localStorage.getItem("Hero02Quantity"),
+    Hero03Quantity: localStorage.getItem("Hero03Quantity"),
+  };
+  //   popUp
+  localStorage.setItem("balance", user.balance);
+  localStorage.setItem("Hero01Quantity", user.Hero01Quantity);
+  localStorage.setItem("Hero02Quantity", user.Hero01Quantity);
+  localStorage.setItem("Hero03Quantity", user.Hero01Quantity);
+} else {
+  console.log(parseInt(localStorage.getItem("balance")));
+  localStorage.setItem("user", user.name);
+  localStorage.setItem("balance", user.balance);
+  localStorage.setItem("Hero01Quantity", user.Hero01Quantity);
+  localStorage.setItem("Hero02Quantity", user.Hero01Quantity);
+  localStorage.setItem("Hero03Quantity", user.Hero01Quantity);
+  console.log("Nao tem user");
+}
+//
+
 let count = 0;
 let acumulator = 0;
 let click = 1;
@@ -60,11 +92,18 @@ function addValue() {
 
 // Heros Secction
 
-// Nerd Otario Secction
+// Nerd Secction
 let Hero01Power = 0.1;
 let Hero01Quantity = 0;
 let Hero01Value = 100;
 let Hero01UpgradeValue = 1000;
+if (user.balance !== 0) {
+  Hero01Power = 0.1;
+  Hero01Quantity = user.Hero01Quantity;
+  Hero01Value = 100;
+  Hero01UpgradeValue = 1000;
+}
+
 const Hero01Card = document.createElement("div");
 
 setInterval(
@@ -73,6 +112,7 @@ setInterval(
     hero01Quantity.innerHTML = Hero01Quantity;
     hero01Power.innerHTML = Hero01Power * Hero01Quantity;
     hero01UpgradeText.innerText = Hero01UpgradeValue;
+    localStorage.setItem("Hero01Quantity", Hero01Quantity);
     if (Hero01Value <= count) {
       hero01.style.backgroundColor = "green";
       hero01.style.cursor = "pointer";
@@ -86,7 +126,7 @@ setInterval(
 );
 
 function BuyHero01() {
-  if (Hero01Quantity === 0) {
+  if (Hero01Quantity === 0 && count >= Hero01Value) {
     herosCounter.appendChild(Hero01Card);
     let Hero01Img = document.createElement("img");
     Hero01Img.style.width = "60px";
@@ -156,7 +196,7 @@ setInterval(
 );
 
 function BuyHero02() {
-  if (Hero02Quantity === 0) {
+  if (Hero02Quantity === 0 && count >= Hero02Value) {
     herosCounter.appendChild(Hero02Card);
     let Hero02Img = document.createElement("img");
     Hero02Img.style.width = "70px";
@@ -223,7 +263,7 @@ setInterval(
 );
 
 function BuyHero03() {
-  if (Hero03Quantity === 0) {
+  if (Hero03Quantity === 0 && count >= Hero03Value) {
     herosCounter.appendChild(Hero03Card);
     let Hero03Img = document.createElement("img");
     Hero03Img.style.width = "50px";
@@ -291,7 +331,7 @@ setInterval(
 );
 
 function BuyHero04() {
-  if (Hero04Quantity === 0) {
+  if (Hero04Quantity === 0 && count >= Hero04Value) {
     herosCounter.appendChild(Hero04Card);
     let Hero04Img = document.createElement("img");
     Hero04Img.style.width = "60px";
@@ -355,6 +395,7 @@ Botao.addEventListener("click", addValue);
 tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
+    localStorage.setItem("balance", count);
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
       acumulator >= 100
