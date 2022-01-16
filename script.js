@@ -4,8 +4,8 @@ let user = {
   acumulator: 0,
   click: 1,
   Hero01Quantity: 0,
-  Hero01Value: 100,
-  Hero01UpgradeValue: 1000,
+  Hero01Value: 10,
+  Hero01UpgradeValue: 100,
   Hero01Power: 0.1,
   Hero02Quantity: 0,
   Hero03Quantity: 0,
@@ -18,8 +18,8 @@ if (!localStorage.getItem("user")) {
     click: localStorage.setItem("cliick", 1),
     Hero01Quantity: localStorage.setItem("Hero01Quantity", 0),
     Hero01Power: localStorage.setItem("Hero01Power", 0.1),
-    Hero01Value: localStorage.setItem("Hero01Value", 100),
-    Hero01UpgradeValue: localStorage.setItem("Hero01UpgradeValue", 1000),
+    Hero01Value: localStorage.setItem("Hero01Value", 10),
+    Hero01UpgradeValue: localStorage.setItem("Hero01UpgradeValue", 100),
     Hero02Quantity: localStorage.setItem("Hero02Quantity", 0),
     Hero03Quantity: localStorage.setItem("Hero03Quantity", 0),
   };
@@ -110,8 +110,8 @@ if (localStorage.getItem("balance") !== 0) {
 } else {
   Hero01Power = 0.1;
   Hero01Quantity = 0;
-  Hero01Value = 100;
-  Hero01UpgradeValue = 1000;
+  Hero01Value = 10;
+  Hero01UpgradeValue = 100;
 }
 
 const Hero01Card = document.createElement("div");
@@ -135,7 +135,7 @@ setInterval(
   [100]
 );
 
-if (parseInt(localStorage.getItem("Hero01Value")) !== 100) {
+if (parseInt(localStorage.getItem("Hero01Value")) !== 10) {
   herosCounter.appendChild(Hero01Card);
   let Hero01Img = document.createElement("img");
   Hero01Img.style.width = "60px";
@@ -144,6 +144,13 @@ if (parseInt(localStorage.getItem("Hero01Value")) !== 100) {
 }
 
 function BuyHero01() {
+  if (Hero01Quantity === 0) {
+    herosCounter.appendChild(Hero01Card);
+    let Hero01Img = document.createElement("img");
+    Hero01Img.style.width = "60px";
+    Hero01Img.src = "imgs/hackerIdiota.png";
+    Hero01Card.appendChild(Hero01Img);
+  }
   if (count >= Hero01Value) {
     Hero01Quantity++;
     localStorage.setItem("Hero01Quantity", Hero01Quantity);
