@@ -410,8 +410,8 @@ function Upgradehero04() {
   if (count >= Hero04UpgradeValue) {
     Hero04Power += Hero04Power;
     localStorage.setItem("Hero04Power", Hero04Power);
-    count -= Hero03Value;
-    Hero03UpgradeValue += Hero03UpgradeValue * 2;
+    count -= Hero04UpgradeValue;
+    Hero04UpgradeValue += Hero04UpgradeValue * 2;
     localStorage.setItem("Hero04UpgradeValue", Hero04UpgradeValue);
     for (let i = 0; i < Hero04Quantity; i++) {
       acumulator += Hero04Power / 2;
