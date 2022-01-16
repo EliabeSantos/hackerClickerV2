@@ -1,42 +1,27 @@
-let user = {
-  name: "user",
-  balance: 0,
-  acumulator: 0,
-  click: 1,
-  Hero01Quantity: 0,
-  Hero01Value: 10,
-  Hero01UpgradeValue: 100,
-  Hero01Power: 0.1,
-  Hero02Quantity: 0,
-  Hero02Value: 100,
-  Hero02UpgradeValue: 1000,
-  Hero02Power: 1,
-  Hero03Quantity: 0,
-  Hero03Value: 1000,
-  Hero03UpgradeValue: 5000,
-  Hero03Power: 10,
-};
-if (!localStorage.getItem("user")) {
-  user = {
-    name: localStorage.setItem("user", user.name),
-    balance: localStorage.setItem("balance", 0),
-    acumulator: localStorage.setItem("acumulator", 0),
-    click: localStorage.setItem("cliick", 1),
-    Hero01Quantity: localStorage.setItem("Hero01Quantity", 0),
-    Hero01Power: localStorage.setItem("Hero01Power", 0.1),
-    Hero01Value: localStorage.setItem("Hero01Value", 10),
-    Hero01UpgradeValue: localStorage.setItem("Hero01UpgradeValue", 100),
-    Hero02Power: localStorage.setItem("Hero02Power", 1),
-    Hero02Value: localStorage.setItem("Hero02Value", 100),
-    Hero02UpgradeValue: localStorage.setItem("Hero02UpgradeValue", 1000),
-    Hero02Quantity: localStorage.setItem("Hero02Quantity", 0),
-    Hero03Power: localStorage.setItem("Hero03Power", 10),
-    Hero03Value: localStorage.setItem("Hero03Value", 1000),
-    Hero03UpgradeValue: localStorage.setItem("Hero03UpgradeValue", 5000),
-    Hero03Quantity: localStorage.setItem("Hero03Quantity", 0),
-  };
+if (!localStorage.getItem("never-played")) {
+  localStorage.setItem("never-played", true);
+  localStorage.setItem("user", "user");
+  localStorage.setItem("balance", 0);
+  localStorage.setItem("acumulator", 0);
+  localStorage.setItem("cliick", 1);
+  localStorage.setItem("Hero01Quantity", 0);
+  localStorage.setItem("Hero01Power", 0.1);
+  localStorage.setItem("Hero01Value", 10);
+  localStorage.setItem("Hero01UpgradeValue", 100);
+  localStorage.setItem("Hero02Power", 1);
+  localStorage.setItem("Hero02Value", 100);
+  localStorage.setItem("Hero02UpgradeValue", 1000);
+  localStorage.setItem("Hero02Quantity", 0);
+  localStorage.setItem("Hero03Power", 10);
+  localStorage.setItem("Hero03Value", 1000);
+  localStorage.setItem("Hero03UpgradeValue", 5000);
+  localStorage.setItem("Hero03Quantity", 0);
+  localStorage.setItem("Hero04Power", 100);
+  localStorage.setItem("Hero04Value", 5000);
+  localStorage.setItem("Hero04UpgradeValue", 10000);
+  localStorage.setItem("Hero04Quantity", 0);
 }
-console.log(localStorage.getItem("user") === "user");
+
 const Botao = document.getElementById("Botao");
 const contador = document.getElementById("contador");
 const contadorPs = document.getElementById("contador-ps");
@@ -82,15 +67,9 @@ const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 
 //
 
-if (localStorage.getItem("balance") !== 0) {
-  count = parseInt(localStorage.getItem("balance"));
-  acumulator = parseFloat(localStorage.getItem("acumulator"));
-  click = 1;
-} else {
-  count = 0;
-  acumulator = 0;
-  click = 0;
-}
+let count = parseInt(localStorage.getItem("balance"));
+let acumulator = parseFloat(localStorage.getItem("acumulator"));
+let click = 1;
 
 setInterval(
   function () {
@@ -110,21 +89,11 @@ function addValue() {
 // Heros Secction
 
 // Nerd Secction
-if (localStorage.getItem("balance") !== 0) {
-  Hero01Power = parseFloat(localStorage.getItem("Hero01Power"));
-  Hero01Quantity = parseInt(localStorage.getItem("Hero01Quantity"));
-  Hero01Value = parseInt(localStorage.getItem("Hero01Value"));
-  Hero01UpgradeValue = parseInt(localStorage.getItem("Hero01UpgradeValue"));
 
-  for (let i = 0; i <= Hero01Quantity; i++) {
-    acumulator += Hero01Power;
-  }
-} else {
-  Hero01Power = 0.1;
-  Hero01Quantity = 0;
-  Hero01Value = 10;
-  Hero01UpgradeValue = 100;
-}
+Hero01Power = parseFloat(localStorage.getItem("Hero01Power"));
+Hero01Quantity = parseInt(localStorage.getItem("Hero01Quantity"));
+Hero01Value = parseInt(localStorage.getItem("Hero01Value"));
+Hero01UpgradeValue = parseInt(localStorage.getItem("Hero01UpgradeValue"));
 
 const Hero01Card = document.createElement("div");
 
@@ -207,21 +176,10 @@ hero01upgrade.addEventListener("click", Upgradehero01);
 
 // Hacker Secction
 
-if (localStorage.getItem("balance") !== 0) {
-  Hero02Power = parseFloat(localStorage.getItem("Hero02Power"));
-  Hero02Quantity = parseInt(localStorage.getItem("Hero02Quantity"));
-  Hero02Value = parseInt(localStorage.getItem("Hero02Value"));
-  Hero02UpgradeValue = parseInt(localStorage.getItem("Hero02UpgradeValue"));
-
-  for (let i = 0; i < Hero01Quantity; i++) {
-    acumulator += Hero01Power;
-  }
-} else {
-  Hero02Power = 1;
-  Hero02Quantity = 0;
-  Hero02Value = 1000;
-  Hero02UpgradeValue = 10000;
-}
+Hero02Power = parseFloat(localStorage.getItem("Hero02Power"));
+Hero02Quantity = parseInt(localStorage.getItem("Hero02Quantity"));
+Hero02Value = parseInt(localStorage.getItem("Hero02Value"));
+Hero02UpgradeValue = parseInt(localStorage.getItem("Hero02UpgradeValue"));
 
 const Hero02Card = document.createElement("div");
 
@@ -298,21 +256,12 @@ hero02upgrade.addEventListener("click", Upgradehero02);
 //
 
 // Anonimous Secction
-if (localStorage.getItem("balance") !== 0) {
-  Hero03Power = parseFloat(localStorage.getItem("Hero03Power"));
-  Hero03Quantity = parseInt(localStorage.getItem("Hero03Quantity"));
-  Hero03Value = parseInt(localStorage.getItem("Hero03Value"));
-  Hero03UpgradeValue = parseInt(localStorage.getItem("Hero03UpgradeValue"));
 
-  for (let i = 0; i < Hero01Quantity; i++) {
-    acumulator += Hero01Power;
-  }
-} else {
-  Hero03Power = 10;
-  Hero03Quantity = 0;
-  Hero03Value = 1000;
-  Hero03UpgradeValue = 5000;
-}
+Hero03Power = parseFloat(localStorage.getItem("Hero03Power"));
+Hero03Quantity = parseInt(localStorage.getItem("Hero03Quantity"));
+Hero03Value = parseInt(localStorage.getItem("Hero03Value"));
+Hero03UpgradeValue = parseInt(localStorage.getItem("Hero03UpgradeValue"));
+
 const Hero03Card = document.createElement("div");
 
 if (parseInt(localStorage.getItem("Hero03Value")) !== 1000) {
@@ -388,10 +337,12 @@ hero03upgrade.addEventListener("click", Upgradehero03);
 //
 // Steve secction
 //
-let Hero04Power = 100;
-let Hero04Quantity = 0;
-let Hero04Value = 100000;
-let Hero04UpgradeValue = 1000000;
+
+Hero04Power = parseFloat(localStorage.getItem("Hero04Power"));
+Hero04Quantity = parseInt(localStorage.getItem("Hero04Quantity"));
+Hero04Value = parseInt(localStorage.getItem("Hero04Value"));
+Hero04UpgradeValue = parseInt(localStorage.getItem("Hero04UpgradeValue"));
+
 const Hero04Card = document.createElement("div");
 
 setInterval(
@@ -421,8 +372,10 @@ function BuyHero04() {
   }
   if (count >= Hero04Value) {
     Hero04Quantity++;
+    localStorage.setItem("Hero04Quantity", Hero04Quantity);
     count -= Hero04Value;
     Hero04Value += Hero04Value / 5;
+    localStorage.setItem("Hero04Value", Hero04Value);
     acumulator += Hero04Power;
   }
 }
@@ -430,8 +383,10 @@ function BuyHero04() {
 function Upgradehero04() {
   if (count >= Hero04UpgradeValue) {
     Hero04Power += Hero04Power;
+    localStorage.setItem("Hero04Power", Hero04Power);
     count -= Hero03Value;
     Hero03UpgradeValue += Hero03UpgradeValue * 2;
+    localStorage.setItem("Hero04UpgradeValue", Hero04UpgradeValue);
     for (let i = 0; i < Hero04Quantity; i++) {
       acumulator += Hero04Power / 2;
     }
@@ -478,19 +433,10 @@ setInterval(
   function () {
     //
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
-    contadorPs.innerHTML = `Por Segundo: ${
-      acumulator >= 100
-        ? acumulator.toString().split(".")[1]
-          ? ` ${acumulator.toString().split(".")[0]},${acumulator
-              .toString()
-              .split(".")[1]
-              .slice(0, 3)}`
-          : acumulator
-        : parseFloat(acumulator).toString().slice(0, 4)
-    }`;
+    contadorPs.innerHTML = `Por Segundo: ${acumulator.toFixed(2)}`;
     contadorPC.innerHTML = `Por Click: ${click}`;
     localStorage.setItem("balance", count.toFixed(2));
-    localStorage.setItem("acumutalor", acumutalor.toFixed(2));
+    localStorage.setItem("acumulator", acumulator.toFixed(2));
   },
   [1]
 );
