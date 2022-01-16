@@ -327,3 +327,7 @@ body .container3 h1 {
 .modal-invisible {
   display: none;
 }
+
+.invisible {
+  display: none;
+}

@@ -3,7 +3,8 @@ if (!localStorage.getItem("never-played")) {
   localStorage.setItem("user", "user");
   localStorage.setItem("balance", 0);
   localStorage.setItem("acumulator", 0);
-  localStorage.setItem("cliick", 1);
+  localStorage.setItem("click", 1);
+  localStorage.setItem("ClickUpgradeValue", 100);
   localStorage.setItem("Hero01Quantity", 0);
   localStorage.setItem("Hero01Power", 0.1);
   localStorage.setItem("Hero01Value", 10);
@@ -32,7 +33,35 @@ const closeModal = document.getElementById("close-modal");
 const tutorialModal = document.getElementById("tutorial");
 const modalTitle = document.getElementById("modal-title");
 const modalDescription = document.getElementById("modal-description");
+const tutorialDescription = document.getElementById("tutorial-description");
+const clickUpgrade = document.getElementById("click-upgrade");
+const clickUpgradeText = document.getElementById("click-upgrade-text");
+//
+let ClickUpgradeValue = parseInt(localStorage.getItem("ClickUpgradeValue"));
+let click = parseInt(localStorage.getItem("click"));
+setInterval(
+  function () {
+    clickUpgradeText.innerText = ClickUpgradeValue;
+    if (ClickUpgradeValue <= count) {
+      clickUpgrade.style.backgroundColor = "green";
+      clickUpgrade.style.cursor = "pointer";
+    } else {
+      clickUpgrade.style.backgroundColor = "#707070";
+      hero01upgrade.style.backgroundColor = "#707070";
+      clickUpgrade.style.cursor = "not-allowed";
+    }
+  },
+  [10]
+);
 
+function ClickUpgrade() {
+  if (count >= ClickUpgradeValue) {
+    count -= ClickUpgradeValue;
+    ClickUpgradeValue += ClickUpgradeValue;
+    click += click;
+  }
+}
+clickUpgrade.addEventListener("click", ClickUpgrade);
 // heros
 const hero01 = document.getElementById("hero-01");
 const hero01Value = document.getElementById("hero-01-value");
@@ -66,10 +95,8 @@ const hero04UpgradeText = document.getElementById("hero-04-upgrade-text");
 //
 
 //
-
 let count = parseInt(localStorage.getItem("balance"));
 let acumulator = parseFloat(localStorage.getItem("acumulator"));
-let click = 1;
 
 setInterval(
   function () {
@@ -83,7 +110,6 @@ function addValue() {
   void Botao.offsetWidth; // trigger reflow
   Botao.classList.add("animate"); // start animation
   count += click;
-  return;
 }
 
 // Heros Secction
@@ -420,7 +446,9 @@ function OpenModal(x) {
     modalTitle.innerHTML = "Tutorial";
     modalDescription.innerHTML =
       "Bem vindo ao hackerClicker V2! Esse game foi feito para relembrar o que aprendi em Js e ver mais claramente minha evolução na programação. Para jogar, basta clickar :). Jogos de click funcionam da seguinte forma:";
+    tutorialDescription.classList.remove("invisible");
   } else {
+    tutorialDescription.classList.add("invisible");
     modalTitle.innerHTML = "Sei las";
   }
   Modal.classList.remove("modal-invisible");
@@ -432,7 +460,7 @@ tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
     //
-    contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
+    contador.innerHTML = `Dinheiro: R$ ${count.toFixed(2)}`;
     contadorPs.innerHTML = `Por Segundo: ${acumulator.toFixed(2)}`;
     contadorPC.innerHTML = `Por Click: ${click}`;
     localStorage.setItem("balance", count.toFixed(2));
@@ -441,7 +469,7 @@ setInterval(
   [1]
 );
 
-const popUp = document.createElement("div");
+// const popUp = document.createElement("div");
 
 // Testar criar pop-up sem lib
 
