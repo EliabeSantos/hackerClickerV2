@@ -8,7 +8,13 @@ let user = {
   Hero01UpgradeValue: 100,
   Hero01Power: 0.1,
   Hero02Quantity: 0,
+  Hero02Value: 100,
+  Hero02UpgradeValue: 1000,
+  Hero02Power: 1,
   Hero03Quantity: 0,
+  Hero03Value: 1000,
+  Hero03UpgradeValue: 5000,
+  Hero03Power: 10,
 };
 if (!localStorage.getItem("user")) {
   user = {
@@ -20,7 +26,13 @@ if (!localStorage.getItem("user")) {
     Hero01Power: localStorage.setItem("Hero01Power", 0.1),
     Hero01Value: localStorage.setItem("Hero01Value", 10),
     Hero01UpgradeValue: localStorage.setItem("Hero01UpgradeValue", 100),
+    Hero02Power: localStorage.setItem("Hero02Power", 1),
+    Hero02Value: localStorage.setItem("Hero02Value", 100),
+    Hero02UpgradeValue: localStorage.setItem("Hero02UpgradeValue", 1000),
     Hero02Quantity: localStorage.setItem("Hero02Quantity", 0),
+    Hero03Power: localStorage.setItem("Hero03Power", 10),
+    Hero03Value: localStorage.setItem("Hero03Value", 1000),
+    Hero03UpgradeValue: localStorage.setItem("Hero03UpgradeValue", 5000),
     Hero03Quantity: localStorage.setItem("Hero03Quantity", 0),
   };
 }
@@ -104,7 +116,7 @@ if (localStorage.getItem("balance") !== 0) {
   Hero01Value = parseInt(localStorage.getItem("Hero01Value"));
   Hero01UpgradeValue = parseInt(localStorage.getItem("Hero01UpgradeValue"));
 
-  for (let i = 0; i < Hero01Quantity; i++) {
+  for (let i = 0; i <= Hero01Quantity; i++) {
     acumulator += Hero01Power;
   }
 } else {
@@ -194,10 +206,23 @@ hero01upgrade.addEventListener("click", Upgradehero01);
 //
 
 // Hacker Secction
-let Hero02Power = 1;
-let Hero02Quantity = 0;
-let Hero02Value = 1000;
-let Hero02UpgradeValue = 10000;
+
+if (localStorage.getItem("balance") !== 0) {
+  Hero02Power = parseFloat(localStorage.getItem("Hero02Power"));
+  Hero02Quantity = parseInt(localStorage.getItem("Hero02Quantity"));
+  Hero02Value = parseInt(localStorage.getItem("Hero02Value"));
+  Hero02UpgradeValue = parseInt(localStorage.getItem("Hero02UpgradeValue"));
+
+  for (let i = 0; i < Hero01Quantity; i++) {
+    acumulator += Hero01Power;
+  }
+} else {
+  Hero02Power = 1;
+  Hero02Quantity = 0;
+  Hero02Value = 1000;
+  Hero02UpgradeValue = 10000;
+}
+
 const Hero02Card = document.createElement("div");
 
 setInterval(
@@ -218,6 +243,13 @@ setInterval(
   [100]
 );
 
+if (parseInt(localStorage.getItem("Hero02Value")) !== 100) {
+  herosCounter.appendChild(Hero02Card);
+  let Hero02Img = document.createElement("img");
+  Hero02Img.style.width = "60px";
+  Hero02Img.src = "imgs/hacker-deepweb.png";
+  Hero02Card.appendChild(Hero02Img);
+}
 function BuyHero02() {
   if (Hero02Quantity === 0 && count >= Hero02Value) {
     herosCounter.appendChild(Hero02Card);
@@ -228,8 +260,10 @@ function BuyHero02() {
   }
   if (count >= Hero02Value) {
     Hero02Quantity++;
+    localStorage.setItem("Hero02Quantity", Hero02Quantity);
     count -= Hero02Value;
     Hero02Value += Hero02Value / 5;
+    localStorage.setItem("Hero02Value", Hero02Value);
     acumulator += Hero02Power;
   }
 }
@@ -237,8 +271,10 @@ function BuyHero02() {
 function Upgradehero02() {
   if (count >= Hero02UpgradeValue) {
     Hero02Power += Hero02Power;
+    localStorage.setItem("Hero02Power", Hero02Power);
     count -= Hero02UpgradeValue;
     Hero02UpgradeValue += Hero02UpgradeValue * 2;
+    localStorage.setItem("Hero02UpgradeValue", Hero02UpgradeValue);
     for (let i = 0; i < Hero02Quantity; i++) {
       acumulator += Hero02Power / 2;
     }
@@ -262,12 +298,30 @@ hero02upgrade.addEventListener("click", Upgradehero02);
 //
 
 // Anonimous Secction
-let Hero03Power = 10;
-let Hero03Quantity = 0;
-let Hero03Value = 10000;
-let Hero03UpgradeValue = 100000;
+if (localStorage.getItem("balance") !== 0) {
+  Hero03Power = parseFloat(localStorage.getItem("Hero03Power"));
+  Hero03Quantity = parseInt(localStorage.getItem("Hero03Quantity"));
+  Hero03Value = parseInt(localStorage.getItem("Hero03Value"));
+  Hero03UpgradeValue = parseInt(localStorage.getItem("Hero03UpgradeValue"));
+
+  for (let i = 0; i < Hero01Quantity; i++) {
+    acumulator += Hero01Power;
+  }
+} else {
+  Hero03Power = 10;
+  Hero03Quantity = 0;
+  Hero03Value = 1000;
+  Hero03UpgradeValue = 5000;
+}
 const Hero03Card = document.createElement("div");
 
+if (parseInt(localStorage.getItem("Hero03Value")) !== 1000) {
+  herosCounter.appendChild(Hero03Card);
+  let Hero03Img = document.createElement("img");
+  Hero03Img.style.width = "60px";
+  Hero03Img.src = "imgs/anonymous.png";
+  Hero03Card.appendChild(Hero03Img);
+}
 setInterval(
   function () {
     hero03Value.innerHTML = Hero03Value;
@@ -295,8 +349,10 @@ function BuyHero03() {
   }
   if (count >= Hero03Value) {
     Hero03Quantity++;
+    localStorage.setItem("Hero03Quantity", Hero03Quantity);
     count -= Hero03Value;
     Hero03Value += Hero03Value / 5;
+    localStorage.setItem("Hero03Value", Hero03Value);
     acumulator += Hero03Power;
   }
 }
@@ -304,8 +360,10 @@ function BuyHero03() {
 function Upgradehero03() {
   if (count >= Hero03UpgradeValue) {
     Hero03Power += Hero03Power;
+    localStorage.setItem("Hero03Power", Hero03Power);
     count -= Hero03Value;
     Hero03UpgradeValue += Hero03UpgradeValue * 2;
+    localStorage.setItem("Hero03UpgradeValue", Hero03UpgradeValue);
     for (let i = 0; i < Hero03Quantity; i++) {
       acumulator += Hero03Power / 2;
     }
@@ -406,7 +464,7 @@ function OpenModal(x) {
   if (x.target.id === "tutorial") {
     modalTitle.innerHTML = "Tutorial";
     modalDescription.innerHTML =
-      "Bem vindo ao hackerClicker V2. esse game foi feito para relembrar oque aprendi em js e ver mais claramente minha evolucao na programacao. Para jogar, basta clikcar :). jogos de click funcionam da seguinte forma.";
+      "Bem vindo ao hackerClicker V2! Esse game foi feito para relembrar o que aprendi em Js e ver mais claramente minha evolução na programação. Para jogar, basta clickar :). Jogos de click funcionam da seguinte forma:";
   } else {
     modalTitle.innerHTML = "Sei las";
   }
@@ -418,7 +476,7 @@ Botao.addEventListener("click", addValue);
 tutorialModal.addEventListener("click", OpenModal);
 setInterval(
   function () {
-    localStorage.setItem("balance", count.toFixed(2));
+    //
     contador.innerHTML = `Dinheiro: R$ ${parseInt(count)}`;
     contadorPs.innerHTML = `Por Segundo: ${
       acumulator >= 100
@@ -431,6 +489,8 @@ setInterval(
         : parseFloat(acumulator).toString().slice(0, 4)
     }`;
     contadorPC.innerHTML = `Por Click: ${click}`;
+    localStorage.setItem("balance", count.toFixed(2));
+    localStorage.setItem("acumutalor", acumutalor.toFixed(2));
   },
   [1]
 );
