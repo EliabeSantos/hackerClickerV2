@@ -162,7 +162,6 @@ function BuyHero01() {
     Hero01Quantity++;
     localStorage.setItem("Hero01Quantity", Hero01Quantity);
     count -= Hero01Value;
-    console.log(Hero01Value);
     Hero01Value += Hero01Value / 5;
     localStorage.setItem("Hero01Value", Hero01Value);
     acumulator += Hero01Power;
